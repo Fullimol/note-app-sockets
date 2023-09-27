@@ -7,6 +7,8 @@ const noteUI = note => { //Sería la forma que va a tener cara nota (similiar a 
     div.innerHTML = `
     <div>
         <h1>${note.title}</h1>
+        <button>Delete</button>
+        <button>Update</button>
         <p>${note.description}</p>
     </div>
     `
@@ -21,4 +23,8 @@ export const renderNotes = notes => {
 export const onHandleSubmit = (e) => {
     e.preventDefault()
     saveNote(noteForm['title'].value, noteForm['description'].value)
+}
+
+export const appendNode = note => {
+    notesList.append(noteUI(note))
 }

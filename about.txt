@@ -1,3 +1,4 @@
 Para usar import y export en vez de "required" hay que instalar @babel/core, @babel/cli, @babel/node y @babel/preset-env
 
 
+27/09 https://www.youtube.com/watch?v=MYqpw0P31ms (1:30:00)

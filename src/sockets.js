@@ -18,7 +18,13 @@ export default (io) => {
             })
             const saveNote = await newNote.save()
             // console.log("saveNote: ", saveNote)
-            socket.emit("servidor:newnote", saveNote)
+            io.emit("servidor:newnote", saveNote)  //"al usar io.emit envias la info a todos los usuarios, al usar socket.emit solo envias a la ventana del navegador que se estaba usando"
+        })
+
+        socket.on('cliente:deletenote', async (id) => {
+            const deletedNote = await Note.findByIdAndRemove(id);
+            console.log("SE HA ELIMINADO: ", deletedNote)
+            emitNotes()
         })
     })
 }

@@ -1,11 +1,8 @@
 // (lado del cliente)
 const socket = io()
 
-//escuchamos el evento llamado 'loadnotes' y mostramos la data que trae del 'sockets.js'
-export const loadNotes = () =>{
-    socket.on('loadnotes', (data) => {
-        console.log("loadnotes:", data)
-    })
+export const loadNotes = (callback) =>{
+    socket.on('loadnotes', callback)
 }
 
 export const saveNote = (title, description) => {

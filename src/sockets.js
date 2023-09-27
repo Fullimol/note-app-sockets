@@ -11,8 +11,13 @@ export default (io) => {
         }
         emitNotes()
 
-        socket.on('newnote', (data) => {
-            console.log(data)
+        socket.on('newnote', async (data) => {
+            const newNote = new Note({
+                title: data.title,
+                description: data.description
+            })
+            const saveNote = await newNote.save()
+            console.log("saveNote: ", saveNote)
         })
     })
 }

@@ -21,4 +21,16 @@ export const deleteNote = (id) => {
     socket.emit("cliente:deletenote", id)
 }
 
-// 27/09 https://www.youtube.com/watch?v=MYqpw0P31ms (1:19:03)
+export const getNoteById = (id) => {
+    socket.emit("cliente:getnotebyid", id)
+}
+
+export const onSelected = (callback) => {
+    socket.on('servidor:selectednote', callback)
+}
+
+export const updateNote = (id, title, description) => {
+    socket.emit('cliente:updatenote', {
+        id, title, description
+    })
+}

@@ -26,5 +26,18 @@ export default (io) => {
             console.log("SE HA ELIMINADO: ", deletedNote)
             emitNotes()
         })
+
+        socket.on('cliente:getnotebyid', async (id) => {
+            const note = await Note.findById(id)
+            io.emit('servidor:selectednote', note)
+        })
+
+        socket.on('cliente:updatenote', async (data) => {
+            await Note.findByIdAndUpdate(data.id, {
+                title: data.title,
+                description: data.description
+            })
+            emitNotes() //Emitimos las notas de la BD actualizadas para mostrar.
+        })
     })
 }
